@@ -3,7 +3,7 @@ import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
 
 export const Navbar = () => {
   return (
-    <AppBar position="sticky" elevation={0}>
+    <AppBar position="sticky">
       <Toolbar>
         <IconButton size="large" edge="start">
           <MenuOutlinedIcon />
