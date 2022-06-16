@@ -5,11 +5,13 @@ import { ActionType, UIReducer } from './UIReducer';
 export interface UIState {
   sidemenuOpen: boolean;
   isAddEntry: boolean;
+  isDragging: boolean;
 }
 
 const UI_INITIAL_STATE: UIState = {
   sidemenuOpen: false,
   isAddEntry: false,
+  isDragging: false,
 };
 
 type Props = {
@@ -31,5 +33,17 @@ export const UIProvider: FC<Props> = ({ children }) => {
     dispatch({ type: ActionType.IS_ADD_ENTRY, payload: isAddEntry });
   };
 
-  return <UIContext.Provider value={{ ...state, openSideMenu, closeSideMenu, setIsAddEntry }}>{children}</UIContext.Provider>;
+  const startDragging = () => {
+    dispatch({ type: ActionType.START_DRAGGING });
+  };
+
+  const endDragging = () => {
+    dispatch({ type: ActionType.END_DRAGGING });
+  };
+
+  return (
+    <UIContext.Provider value={{ ...state, openSideMenu, closeSideMenu, setIsAddEntry, startDragging, endDragging }}>
+      {children}
+    </UIContext.Provider>
+  );
 };
